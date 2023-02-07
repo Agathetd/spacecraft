@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-export default function App() {
+import LoginScreen from "./src/screens/LoginScreen";
+import { Offline } from "./src/screens/Offline";
+import { ScreenContainer } from "./src/screens/ScreenContainer";
+import { StarshipFeedScreen } from "./src/screens/StarshipFeedScreen";
+import { TermsScreen } from "./src/screens/TermsScreen";
+//import { StarshipFeedScreen } from "./src/screens/StarshipFeedScreen";
+
+const App = () => {
+  const queryClient = new QueryClient();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <QueryClientProvider client={queryClient}>
+      <ScreenContainer title={"Offline"} />
+    </QueryClientProvider>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    //<TermsScreen />;
+    //<LoginScreen />;
+  );
+};
+
+export default App;
