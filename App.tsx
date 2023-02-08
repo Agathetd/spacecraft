@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import LoginScreen from "./src/screens/LoginScreen";
 import { Offline } from "./src/screens/Offline";
+import { Navigator } from "./src/navigation/Navigator";
 import { ScreenContainer } from "./src/screens/ScreenContainer";
 import { StarshipFeedScreen } from "./src/screens/StarshipFeedScreen";
 import { TermsScreen } from "./src/screens/TermsScreen";
@@ -13,11 +14,11 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ScreenContainer title={"Offline"} />
+      <Navigator></Navigator>
     </QueryClientProvider>
 
     //<TermsScreen />;
-    //<LoginScreen />;
+    
   );
 };
 

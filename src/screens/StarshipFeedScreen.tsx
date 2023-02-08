@@ -17,6 +17,8 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 import { default as data2 } from "../../api/data2.json";
 import { useStarships } from "../hooks/useStarships";
+import { useNavigation } from "@react-navigation/native";
+import { Routes } from "../navigation/Routes";
 
 interface ItemProps {
   name: string;
@@ -25,6 +27,12 @@ interface ItemProps {
   hyperdrive_rating: string;
   cost_in_credits: string;
 }
+const navigation = useNavigation();
+
+function navigateToStarshipDetailScreen {
+  navigation.navigate(Routes.STARSHIP_FEED_SCREEN);
+}
+
 
 const Item = ({
   name,
@@ -33,7 +41,8 @@ const Item = ({
   hyperdrive_rating,
   cost_in_credits,
 }: ItemProps) => (
-  <Card style={styles.item}>
+  <Card style={styles.item}
+  onPress={navigateToStarshipDetailScreen}>
     <Card.Title title={name} subtitle={model} />
     <Card.Content>
       <Text>{crew}</Text>
@@ -48,6 +57,8 @@ const Item = ({
 
 export const StarshipFeedScreen = () => {
   const { isLoading, isError, data } = useStarships();
+
+  
 
   if (isLoading) {
     return <Text>Loading ...</Text>;
